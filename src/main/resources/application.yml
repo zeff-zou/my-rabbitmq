@@ -1,0 +1,13 @@
+server:
+  port: 5555
+spring:
+  application:
+    name: rabbitmq
+  rabbitmq:
+    host: localhost
+    username: zouzf
+    password: zouzf
+    port: 5672
+    virtual-host: /vhost_rabbit
+#    publisher-confirms: true
+#    publisher-returns: true
