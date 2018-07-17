@@ -2,6 +2,9 @@ package com.springbootdemo.web;
 
 import com.springbootdemo.rabbit.simplequeue.SimpleConsumer;
 import com.springbootdemo.rabbit.simplequeue.SimpleSender;
+import com.springbootdemo.rabbit.workqueues.fairdispatch.FairConsumerOne;
+import com.springbootdemo.rabbit.workqueues.fairdispatch.FairConsumerTwo;
+import com.springbootdemo.rabbit.workqueues.fairdispatch.FairSend;
 import com.springbootdemo.rabbit.workqueues.roundrobin.RoundConsumerOne;
 import com.springbootdemo.rabbit.workqueues.roundrobin.RoundConsumerTwo;
 import com.springbootdemo.rabbit.workqueues.roundrobin.RoundSend;
@@ -27,6 +30,12 @@ public class RabbitmqController {
     private RoundConsumerOne roundConsumerOne;
     @Autowired
     private RoundConsumerTwo roundConsumerTwo;
+    @Autowired
+    private FairSend fairSend;
+    @Autowired
+    private FairConsumerOne fairConsumerOne;
+    @Autowired
+    private FairConsumerTwo fairConsumerTwo;
 
     //发送简单队列消息
     @RequestMapping("/sendSimple")
@@ -53,6 +62,21 @@ public class RabbitmqController {
     public String roundConsumer() throws Exception {
         roundConsumerOne.consumer();
         roundConsumerTwo.consumer();
+        return "success";
+    }
+
+    //发送工作队列消息(公平分发)
+    @RequestMapping("/sendFair")
+    public String sendFair() throws Exception {
+        fairSend.sendMq();
+        return "success";
+    }
+
+    //开启监听工作队列(公平分发)
+    @RequestMapping("/fairConsumer")
+    public String fairConsumer() throws IOException {
+        fairConsumerOne.consumer();
+        fairConsumerTwo.consumer();
         return "success";
     }
 }
