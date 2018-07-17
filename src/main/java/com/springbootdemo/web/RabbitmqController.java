@@ -5,6 +5,8 @@ import com.springbootdemo.rabbit.publishsubscribe.SubscribeOne;
 import com.springbootdemo.rabbit.publishsubscribe.SubscribeTwo;
 import com.springbootdemo.rabbit.routing.direct.DirectConsumer;
 import com.springbootdemo.rabbit.routing.direct.DirectSend;
+import com.springbootdemo.rabbit.routing.multiple.MultipleConsumer;
+import com.springbootdemo.rabbit.routing.multiple.MultipleSend;
 import com.springbootdemo.rabbit.simplequeue.SimpleConsumer;
 import com.springbootdemo.rabbit.simplequeue.SimpleSender;
 import com.springbootdemo.rabbit.workqueues.fairdispatch.FairConsumerOne;
@@ -52,6 +54,10 @@ public class RabbitmqController {
     private DirectSend directSend;
     @Autowired
     private DirectConsumer directConsumer;
+    @Autowired
+    private MultipleSend multipleSend;
+    @Autowired
+    private MultipleConsumer multipleConsumer;
 
     //发送简单队列消息
     @RequestMapping("/sendSimple")
@@ -126,4 +132,17 @@ public class RabbitmqController {
         return "success";
     }
 
+    //发送路由direct队列消息
+    @RequestMapping("/sendMultiple")
+    public String sendMultiple() throws Exception {
+        multipleSend.sendMq("black");
+        return "success";
+    }
+    //开启监听(路由direct)
+    @RequestMapping("/multipleConsumer")
+    public String multipleConsumer() throws Exception {
+        multipleConsumer.queueOne();
+        multipleConsumer.queueTwo();
+        return "success";
+    }
 }
