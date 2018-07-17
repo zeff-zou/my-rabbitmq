@@ -1,4 +1,4 @@
-package com.springbootdemo.rabbit.workqueues.Roundrobin;
+package com.springbootdemo.rabbit.workqueues.roundrobin;
 
 import com.rabbitmq.client.*;
 import com.springbootdemo.rabbit.ConnectionUtils;
