@@ -2,9 +2,9 @@ package com.springbootdemo.web;
 
 import com.springbootdemo.rabbit.simplequeue.SimpleConsumer;
 import com.springbootdemo.rabbit.simplequeue.SimpleSender;
-import com.springbootdemo.rabbit.workqueues.Roundrobin.RoundConsumerOne;
-import com.springbootdemo.rabbit.workqueues.Roundrobin.RoundConsumerTwo;
-import com.springbootdemo.rabbit.workqueues.Roundrobin.RoundSend;
+import com.springbootdemo.rabbit.workqueues.roundrobin.RoundConsumerOne;
+import com.springbootdemo.rabbit.workqueues.roundrobin.RoundConsumerTwo;
+import com.springbootdemo.rabbit.workqueues.roundrobin.RoundSend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
