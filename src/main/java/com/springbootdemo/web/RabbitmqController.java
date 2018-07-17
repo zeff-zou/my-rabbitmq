@@ -3,6 +3,8 @@ package com.springbootdemo.web;
 import com.springbootdemo.rabbit.publishsubscribe.Publish;
 import com.springbootdemo.rabbit.publishsubscribe.SubscribeOne;
 import com.springbootdemo.rabbit.publishsubscribe.SubscribeTwo;
+import com.springbootdemo.rabbit.routing.direct.DirectConsumer;
+import com.springbootdemo.rabbit.routing.direct.DirectSend;
 import com.springbootdemo.rabbit.simplequeue.SimpleConsumer;
 import com.springbootdemo.rabbit.simplequeue.SimpleSender;
 import com.springbootdemo.rabbit.workqueues.fairdispatch.FairConsumerOne;
@@ -46,6 +48,10 @@ public class RabbitmqController {
     private SubscribeOne subscribeOne;
     @Autowired
     private SubscribeTwo subscribeTwo;
+    @Autowired
+    private DirectSend directSend;
+    @Autowired
+    private DirectConsumer directConsumer;
 
     //发送简单队列消息
     @RequestMapping("/sendSimple")
@@ -90,18 +96,34 @@ public class RabbitmqController {
         return "success";
     }
 
-    //发送工作队列消息(公平分发)
+    //发送订阅消息
     @RequestMapping("/sendPublish")
     public String sendPublish() throws Exception {
         publish.sendMq();
         return "success";
     }
 
-    //开启监听工作队列(公平分发)
+    //开启监听(分发订阅)
     @RequestMapping("/Subscribe")
     public String Subscribe() throws IOException {
         subscribeOne.subscribe();
         subscribeTwo.subscribe();
         return "success";
     }
+
+
+    //发送路由direct队列消息 todo 路由目前定义了三种 orange black green
+    @RequestMapping("/sendDirect")
+    public String sendDirect(String routing) throws Exception {
+        directSend.sendMq(routing);
+        return "success";
+    }
+    //开启监听(路由direct)
+    @RequestMapping("/directConsumer")
+    public String directConsumer() throws Exception {
+        directConsumer.queueOne();
+        directConsumer.queueTwo();
+        return "success";
+    }
+
 }
