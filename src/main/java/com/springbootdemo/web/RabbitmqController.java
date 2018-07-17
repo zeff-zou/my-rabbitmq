@@ -1,5 +1,8 @@
 package com.springbootdemo.web;
 
+import com.springbootdemo.rabbit.publishsubscribe.Publish;
+import com.springbootdemo.rabbit.publishsubscribe.SubscribeOne;
+import com.springbootdemo.rabbit.publishsubscribe.SubscribeTwo;
 import com.springbootdemo.rabbit.simplequeue.SimpleConsumer;
 import com.springbootdemo.rabbit.simplequeue.SimpleSender;
 import com.springbootdemo.rabbit.workqueues.fairdispatch.FairConsumerOne;
@@ -9,6 +12,7 @@ import com.springbootdemo.rabbit.workqueues.roundrobin.RoundConsumerOne;
 import com.springbootdemo.rabbit.workqueues.roundrobin.RoundConsumerTwo;
 import com.springbootdemo.rabbit.workqueues.roundrobin.RoundSend;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,6 +40,12 @@ public class RabbitmqController {
     private FairConsumerOne fairConsumerOne;
     @Autowired
     private FairConsumerTwo fairConsumerTwo;
+    @Autowired
+    private Publish publish;
+    @Autowired
+    private SubscribeOne subscribeOne;
+    @Autowired
+    private SubscribeTwo subscribeTwo;
 
     //发送简单队列消息
     @RequestMapping("/sendSimple")
@@ -77,6 +87,21 @@ public class RabbitmqController {
     public String fairConsumer() throws IOException {
         fairConsumerOne.consumer();
         fairConsumerTwo.consumer();
+        return "success";
+    }
+
+    //发送工作队列消息(公平分发)
+    @RequestMapping("/sendPublish")
+    public String sendPublish() throws Exception {
+        publish.sendMq();
+        return "success";
+    }
+
+    //开启监听工作队列(公平分发)
+    @RequestMapping("/Subscribe")
+    public String Subscribe() throws IOException {
+        subscribeOne.subscribe();
+        subscribeTwo.subscribe();
         return "success";
     }
 }
