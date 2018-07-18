@@ -15,14 +15,11 @@ public class TopicSend {
         Connection connection = ConnectionUtils.getConnection();
         //获取通道
         Channel channel = connection.createChannel();
-
         // 声明exchange 交换机
         channel.exchangeDeclare(EXCHANGE_NAME,"topic");
-
         //发送消息到交换机exchange
         String msg = "hello topic ";
         channel.basicPublish(EXCHANGE_NAME,routing,null,msg.getBytes());
-
         channel.close();
         connection.close();
     }

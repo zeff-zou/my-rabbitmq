@@ -13,7 +13,7 @@ public class TopicConsumer {
     private final static String QUEUE_NAME_TWO="test_queue_topic_two";
 
     private final static String EXCHANGE_NAME = "test_exchange_topic";
-
+    //消费者1
     public void consumerOne() throws Exception {
         // 获取到连接以及mq通道
         Connection connection = ConnectionUtils.getConnection();
@@ -37,7 +37,7 @@ public class TopicConsumer {
         boolean autoAck = false;
         channel.basicConsume(QUEUE_NAME_ONE, autoAck, consumer);
     }
-
+    //消费者2
     public void consumerTwo() throws Exception{
         // 获取到连接以及mq通道
         Connection connection = ConnectionUtils.getConnection();
@@ -62,5 +62,4 @@ public class TopicConsumer {
         boolean autoAck = false;
         channel.basicConsume(QUEUE_NAME_TWO, autoAck, consumer);
     }
-
 }
