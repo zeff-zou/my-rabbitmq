@@ -15,7 +15,7 @@ public class DirectConsumer {
     private final static String EXCHANGE_NAME = "test_exchange_direct";
 
     //队列1
-    public void queueOne() throws Exception {
+    public void consumerOne() throws Exception {
         // 获取到连接以及mq通道
         Connection connection = ConnectionUtils.getConnection();
         final Channel channel = connection.createChannel();
@@ -44,7 +44,7 @@ public class DirectConsumer {
         channel.basicConsume(QUEUE_NAME_ONE, autoAck, consumer);
     }
     //队列2
-    public void queueTwo() throws Exception {
+    public void consumerTwo() throws Exception {
         // 获取到连接以及mq通道
         Connection connection = ConnectionUtils.getConnection();
         final Channel channel = connection.createChannel();

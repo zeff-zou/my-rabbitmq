@@ -9,6 +9,8 @@ import com.springbootdemo.rabbit.routing.multiple.MultipleConsumer;
 import com.springbootdemo.rabbit.routing.multiple.MultipleSend;
 import com.springbootdemo.rabbit.simplequeue.SimpleConsumer;
 import com.springbootdemo.rabbit.simplequeue.SimpleSender;
+import com.springbootdemo.rabbit.topic.TopicConsumer;
+import com.springbootdemo.rabbit.topic.TopicSend;
 import com.springbootdemo.rabbit.workqueues.fairdispatch.FairConsumerOne;
 import com.springbootdemo.rabbit.workqueues.fairdispatch.FairConsumerTwo;
 import com.springbootdemo.rabbit.workqueues.fairdispatch.FairSend;
@@ -58,6 +60,10 @@ public class RabbitmqController {
     private MultipleSend multipleSend;
     @Autowired
     private MultipleConsumer multipleConsumer;
+    @Autowired
+    private TopicSend topicSend;
+    @Autowired
+    private TopicConsumer topicConsumer;
 
     //发送简单队列消息
     @RequestMapping("/sendSimple")
@@ -127,8 +133,8 @@ public class RabbitmqController {
     //开启监听(路由direct)
     @RequestMapping("/directConsumer")
     public String directConsumer() throws Exception {
-        directConsumer.queueOne();
-        directConsumer.queueTwo();
+        directConsumer.consumerOne();
+        directConsumer.consumerTwo();
         return "success";
     }
 
@@ -141,8 +147,22 @@ public class RabbitmqController {
     //开启监听(路由direct)
     @RequestMapping("/multipleConsumer")
     public String multipleConsumer() throws Exception {
-        multipleConsumer.queueOne();
-        multipleConsumer.queueTwo();
+        multipleConsumer.consumerOne();
+        multipleConsumer.consumerTwo();
+        return "success";
+    }
+
+    //发送路由direct队列消息
+    @RequestMapping("/sendTopic")
+    public String sendTopic() throws Exception {
+        topicSend.sendMq("item.delete");
+        return "success";
+    }
+    //开启监听(路由direct)
+    @RequestMapping("/topicConsumer")
+    public String topicConsumer() throws Exception {
+        topicConsumer.consumerOne();
+        topicConsumer.consumerTwo();
         return "success";
     }
 }
