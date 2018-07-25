@@ -47,6 +47,7 @@ public class DelayConsumer {
         rabbitAdmin.declareQueue( QueueBuilder.durable(DELAY_QUEUE)
                 .withArgument("x-dead-letter-exchange", DELAY_EXCHANGE)//DLX deal letter(死信后转发的交换器)
                 .withArgument("x-dead-letter-routing-key", DELAY_CUSTOM_ROUTING)//死信后携带的路由
+//                .withArgument("x-message-ttl",3000) todo 设置整个队列的过期时间(本例子没有用到,因为在发送消息时,设置了消息的过期时间)
                 .build());
         rabbitAdmin.declareExchange(ExchangeBuilder.directExchange(DELAY_EXCHANGE).durable().build());
         rabbitAdmin.declareBinding(new Binding(DELAY_QUEUE,Binding.DestinationType.QUEUE,
