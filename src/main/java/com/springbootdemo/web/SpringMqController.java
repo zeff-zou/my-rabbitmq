@@ -12,6 +12,13 @@ public class SpringMqController {
     private SpringSend springSend;
 
     //发送简单队列消息
+    @RequestMapping("/sendDemo")
+    public String sendDemo() throws Exception {
+        springSend.simpleDemo();
+        return "success";
+    }
+
+    //发送简单队列消息
     @RequestMapping("/sendSimple")
     public String sendSimple(){
         springSend.sendDefault();
