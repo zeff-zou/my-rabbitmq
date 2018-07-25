@@ -16,4 +16,12 @@ public class SpringSend {
     public void sendDirect(){
         rabbitTemplate.convertAndSend("spring_exchange_direct","spring_routing_direct","hello spring direct msg!");
     }
+
+    public void sendFanout(){
+        rabbitTemplate.convertAndSend("spring_exchange_fanout",null,"hello spring fanout msg!");
+    }
+
+    public void sendTopic(){
+        rabbitTemplate.convertAndSend("spring_exchange_topic","spring.routing.topic.*","hello spring fanout msg!");
+    }
 }

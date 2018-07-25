@@ -24,4 +24,18 @@ public class SpringMqController {
         springSend.sendDirect();
         return "success";
     }
+
+    //发送Fanout队列消息
+    @RequestMapping("/sendFanout")
+    public String sendFanout(){
+        springSend.sendFanout();
+        return "success";
+    }
+
+    //发送Direct队列消息
+    @RequestMapping("/sendTopic")
+    public String sendTopic(){
+        springSend.sendTopic();
+        return "success";
+    }
 }
