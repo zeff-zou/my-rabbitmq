@@ -9,5 +9,5 @@ spring:
     password: zouzf
     port: 5672
     virtual-host: /vhost_rabbit
-#    publisher-confirms: true
-#    publisher-returns: true
+    publisher-confirms: true
+    publisher-returns: true
