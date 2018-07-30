@@ -4,7 +4,7 @@ spring:
   application:
     name: rabbitmq
   rabbitmq:
-    host: localhost
+    host: 47.106.85.65
     username: zouzf
     password: zouzf
     port: 5672
