@@ -35,9 +35,23 @@ public class SpringQueue {
                     key = SPRING_ROUTING_DIRECT)//路由Key默认是空字符串
     })
     public void processDirect(String msg){
-        System.out.println("spring_queue_default: "+msg);
+        System.out.println("spring_queue_direct: "+msg);
+        try {
+            Thread.sleep(2*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
+    @RabbitListener(bindings = {
+            @QueueBinding(
+                    value = @Queue(value = SPRING_QUEUE_DIRECT, durable = "true"),
+                    exchange = @Exchange(value = SPRING_EXCHANGE_DIRECT, durable = "true",type=ExchangeTypes.DIRECT),
+                    key = SPRING_ROUTING_DIRECT)//路由Key默认是空字符串
+    })
+    public void processDirectTwo(String msg){
+        System.out.println("spring_queue_direct_Two: "+msg);
+    }
 
     //Fanout 例子
     private final static String SPRING_QUEUE_FANOUT_ONE ="spring_queue_fanout_one";

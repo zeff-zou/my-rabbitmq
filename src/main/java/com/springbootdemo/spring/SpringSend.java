@@ -34,7 +34,10 @@ public class SpringSend {
     }
 
     public void sendDirect(){
-        RabbitTemplateUtils.send("spring_exchange_direct","spring_routing_direct","hello spring direct msg!");
+        for (int i=0;i<10;i++){
+            RabbitTemplateUtils.send("spring_exchange_direct","spring_routing_direct","hello spring direct msg! ["+i+"]");
+        }
+
     }
 
     public void sendFanout(){

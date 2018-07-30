@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
+/**
+ * 消息确认 只要消息到了交换机(exchange)就返回ture,表示成功(注:消息只要到了exchange,哪怕没有到queue，这里返回的状态也是true)
+ */
 @Component
 public class RabbitConfirmConfig implements RabbitTemplate.ConfirmCallback{
 
@@ -21,8 +24,6 @@ public class RabbitConfirmConfig implements RabbitTemplate.ConfirmCallback{
 
     @Override
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
-        System.out.println("消息唯一标识："+correlationData);
-        System.out.println("确认结果："+ack);
-        System.out.println("失败原因："+cause);
+        System.out.println("消息唯一标识："+correlationData+";确认结果："+ack+";失败原因："+cause);
     }
 }
