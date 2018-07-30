@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 
 /**
- * 消息确认,只有当消息发送送失败时才会进入此方法(注:只有当消息到达queue才不会触发)
+ * 消息确认,只有当消息发送失败时才会进入此方法(注:只有当消息到达queue才不会触发)
  */
 @Component
 public class RabbitReturnConfig implements RabbitTemplate.ReturnCallback{
