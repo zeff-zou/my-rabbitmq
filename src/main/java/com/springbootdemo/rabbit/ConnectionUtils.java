@@ -14,7 +14,7 @@ public class ConnectionUtils {
             //创建连接工厂
             factory = new ConnectionFactory();
             //设置服务地址
-            factory.setHost("127.0.0.1");
+            factory.setHost("47.106.85.65");
             //设置端口
             factory.setPort(5672);
             //设置账号信息，用户名，密码，vhost
