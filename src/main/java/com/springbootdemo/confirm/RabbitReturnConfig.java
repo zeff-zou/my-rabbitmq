@@ -23,7 +23,7 @@ public class RabbitReturnConfig implements RabbitTemplate.ReturnCallback{
     @Override
     public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
         System.out.println("消息主体 message : "+message);
-        System.out.println("消息主体 message : "+replyCode);
+        System.out.println("应答 code : "+replyCode);
         System.out.println("描述："+replyText);
         System.out.println("消息使用的交换器 exchange : "+exchange);
         System.out.println("消息使用的路由键 routing : "+routingKey);
