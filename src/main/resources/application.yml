@@ -11,3 +11,8 @@ spring:
     virtual-host: /vhost_rabbit
     publisher-confirms: true
     publisher-returns: true
+    listener:
+      acknowledge-mode: auto
+      retry:
+        enabled: true
+        max-attempts: 5

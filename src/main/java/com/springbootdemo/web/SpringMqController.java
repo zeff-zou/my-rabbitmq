@@ -1,6 +1,7 @@
 package com.springbootdemo.web;
 
 import com.springbootdemo.spring.SpringSend;
+import com.springbootdemo.spring.manualack.ManualAckSend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class SpringMqController {
     @Autowired
     private SpringSend springSend;
+    @Autowired
+    private ManualAckSend manualAckSend;
 
     //发送简单队列消息
     @RequestMapping("/sendDemo")
@@ -43,6 +46,12 @@ public class SpringMqController {
     @RequestMapping("/sendTopic")
     public String sendTopic(){
         springSend.sendTopic();
+        return "success";
+    }
+
+    @RequestMapping("/sendManualAck")
+    public String sendManualAckMq(){
+        manualAckSend.sendMq();
         return "success";
     }
 }
