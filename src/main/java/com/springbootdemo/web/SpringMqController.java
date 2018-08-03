@@ -54,4 +54,9 @@ public class SpringMqController {
         manualAckSend.sendMq();
         return "success";
     }
+    @RequestMapping("/sendConfigMq")
+    public String sendConfigMq(){
+        manualAckSend.sendConfigMq();
+        return "success";
+    }
 }

@@ -26,7 +26,7 @@ public class ManualAckQueue {
     })
     public void process(Message msg, Channel channel) throws IOException {
         try {
-            System.out.println("spring_queue_default: "+new String(msg.getBody(),"UTF-8"));
+            System.out.println("spring_queue_manualAck: "+new String(msg.getBody(),"UTF-8"));
             if (true){  //todo 模拟处理消息时发生异常
                 System.out.println("~`````````````````");
                 throw new RuntimeException();

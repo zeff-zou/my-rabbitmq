@@ -12,7 +12,7 @@ spring:
     publisher-confirms: true
     publisher-returns: true
     listener:
-      acknowledge-mode: auto
+      acknowledge-mode: auto #默认就是auto
       retry:
         enabled: true
         max-attempts: 5
