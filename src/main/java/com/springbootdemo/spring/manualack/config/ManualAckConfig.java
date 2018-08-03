@@ -23,11 +23,11 @@ public class ManualAckConfig {
 
     @Bean
     public SimpleMessageListenerContainer messageContainer1(ConnectionFactory connectionFactory, ManualConsume manualConsume) {
-            SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory);
+        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer(connectionFactory);
         container.setQueues(initQueue());
         container.setExposeListenerChannel(true);
-        container.setMaxConcurrentConsumers(1);//最大并发消费者
-        container.setConcurrentConsumers(1);//并发消费者
+        container.setMaxConcurrentConsumers(5);//最大并发消费者
+        container.setConcurrentConsumers(2);//并发消费者
         container.setAcknowledgeMode(AcknowledgeMode.MANUAL); //设置确认模式手工确认
         container.setMessageListener(manualConsume);
         return container;
